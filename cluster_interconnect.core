@@ -1,1 +1,36 @@
 CAPI=2: 
+# Copyright INTEGNANO University Of Paris Saclay 2023 
+# written by: ourspalois
+
+name: "openhwgroup:ip:tcdm_interconnect"
+description: "tcdm interconnect"
+filesets:
+  rtl_pkg:
+    depend: 
+      - pulp-platform.org::common_cells:1.28.0
+    files: 
+      - rtl/tcdm_interconnect/tcdm_interconnect_pkg.sv
+    file_type: systemVerilogSource
+
+  rtl_variable_latency:
+    files: 
+      - rtl/variable_latency_interconnect/addr_decoder.sv
+      - rtl/variable_latency_interconnect/full_duplex_xbar.sv
+      - rtl/variable_latency_interconnect/simplex_xbar.sv
+      - rtl/variable_latency_interconnect/variable_latency_interconnect.sv
+    file_type: systemVerilogSource
+
+  rtl_tcdm_interconnect:
+    files: 
+      - rtl/tcdm_interconnect/tcdm_interconnect.sv
+      - rtl/tcdm_interconnect/xbar.sv
+      - rtl/tcdm_interconnect/addr_dec_resp_mux.sv
+      - rtl/tcdm_interconnect/amo_shim.sv
+    file_type: systemVerilogSource
+
+targets: 
+  default:
+    filesets:
+      - rtl_pkg
+      - rtl_variable_latency
+      - rtl_tcdm_interconnect
